@@ -7,7 +7,6 @@
 if [[ $NAME == "KZL-Linux" ]]; then
     build.py \
         --verbose \
-        --revision branch-16 \
         --host-toolchain clang \
         --host-toolchain-dir /usr/bin \
         --native-toolchain clang \
