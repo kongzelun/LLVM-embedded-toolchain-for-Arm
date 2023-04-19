@@ -39,8 +39,6 @@ fi
 
 cd "$(dirname "$0")"
 
-pip install --upgrade pip
-pip install --upgrade wheel
-pip install --upgrade setuptools
-pip install -r requirements.txt
+pip install -U --no-index --find-links ~/wheels pip wheel setuptools
+pip install -U --no-index --find-links ~/wheels -r requirements.txt
 pip install -e scripts

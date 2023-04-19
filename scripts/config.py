@@ -229,6 +229,7 @@ def _make_library_specs():
         LibrarySpec('arm', 'armv8.1m.main', soft, 'nofp_nomve', '+nofp+nomve'),
         LibrarySpec('arm', 'armv8m.main', hard, 'fp', '+fp'),
         LibrarySpec('arm', 'armv8m.main', soft, 'nofp', '+nofp'),
+        LibrarySpec('arm', 'armv8m.main', hard, 'cortex-m33_fpv5-sp-d16', '', '-mcpu=cortex-m33 -mfpu=fpv5-sp-d16'),
         LibrarySpec('arm', 'armv7em', hard, 'fpv4_sp_d16', '',
                     '-mfpu=fpv4-sp-d16'),
         LibrarySpec('arm', 'armv7em', hard, 'fpv5_d16', '', '-mfpu=fpv5-d16'),
