@@ -7,7 +7,7 @@
 if [[ $NAME == "KZL-Linux" ]]; then
     build.py \
         --verbose \
-        --revision "14.0.6" \
+        --revision "13.0.0" \
         --variants armv8m.main_hard_cortex-m33_fpv5-sp-d16 \
         --host-toolchain clang \
         --host-toolchain-dir /usr/bin \
@@ -17,7 +17,7 @@ if [[ $NAME == "KZL-Linux" ]]; then
 elif [[ $NAME == "Ubuntu" ]]; then
     build.py \
         --verbose \
-        --revision "14.0.6" \
+        --revision "13.0.1" \
         --variants armv8m.main_hard_cortex-m33_fpv5-sp-d16 \
         --host-toolchain clang \
         --host-toolchain-dir /usr/bin \
