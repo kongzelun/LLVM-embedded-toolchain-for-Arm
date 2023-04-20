@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -rf venv
-# rm -rf repos-14.0.0
-rm -rf build-14.0.0
-rm -rf install-14.0.0
+# rm -rf repos-*
+rm -rf build-*
+rm -rf install-*
 rm -f *.log
