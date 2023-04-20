@@ -7,19 +7,21 @@
 if [[ $NAME == "KZL-Linux" ]]; then
     build.py \
         --verbose \
+        --revision "14.0.6" \
+        --variants armv8m.main_hard_cortex-m33_fpv5-sp-d16 \
         --host-toolchain clang \
         --host-toolchain-dir /usr/bin \
         --native-toolchain clang \
         --native-toolchain-dir /usr/bin \
-        --variants armv8m.main_hard_cortex-m33_fpv5-sp-d16 2>&1 \
-    | tee armv8m.main_hard_cortex-m33_fpv5-sp-d16.log
+        --use-ninja > build.log 2>&1
 elif [[ $NAME == "Ubuntu" ]]; then
     build.py \
         --verbose \
+        --revision "14.0.6" \
+        --variants armv8m.main_hard_cortex-m33_fpv5-sp-d16 \
         --host-toolchain clang \
-        --host-toolchain-dir /usr/local/bin \
+        --host-toolchain-dir /usr/bin \
         --native-toolchain clang \
-        --native-toolchain-dir /usr/local/bin \
-        --variants armv8m.main_hard_cortex-m33_fpv5-sp-d16 2>&1 \
-    | tee armv8m.main_hard_cortex-m33_fpv5-sp-d16.log
+        --native-toolchain-dir /usr/bin \
+        --use-ninja > build.log 2>&1
 fi

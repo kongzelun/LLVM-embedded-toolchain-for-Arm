@@ -31,6 +31,19 @@ Revisions:
         Revision: newlib-4.1.0
         Patch: newlib-4.1.0-llvm-14.patch
 
+  - Revision: "14.0.6"
+    Modules:
+      - Name: llvm.git
+        FriendlyName: LLVM
+        URL:  https://github.com/llvm/llvm-project.git
+        Revision: llvmorg-14.0.6
+        Patch: llvm-14.patch
+      - Name: newlib.git
+        FriendlyName: Newlib
+        URL:  https://github.com/mirror/newlib-cygwin.git
+        Revision: newlib-4.1.0
+        Patch: newlib-4.1.0-llvm-14.patch
+
   - Revision: branch-14
     Modules:
       - Name: llvm.git
