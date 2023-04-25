@@ -147,13 +147,13 @@ class ToolchainBuild:
         self._prepare_build_dir(llvm_build_dir)
 
         projects = ['clang', 'lld']
-        dist_comps = [
-            'clang',
-            'clang-resource-headers',
-            'lld',
-            'llvm-config',
-        ]
-        dist_comps += self.llvm_binutils
+        # dist_comps = [
+        #     'clang',
+        #     'clang-resource-headers',
+        #     'lld',
+        #     'llvm-config',
+        # ]
+        # dist_comps += self.llvm_binutils
 
         cmake_defs = self._get_common_cmake_defs_for_llvm()
         cmake_defs.update({
@@ -173,8 +173,10 @@ class ToolchainBuild:
                               os.path.join(cfg.llvm_repo_dir, 'llvm'),
                               llvm_build_dir, cmake_defs, cmake_env)
         logging.info('Building and installing native LLVM toolchain')
+        # self._cmake_build(llvm_build_dir,
+        #                   target='install-distribution-stripped')
         self._cmake_build(llvm_build_dir,
-                          target='install-distribution-stripped')
+                          target='install')
 
     def build_clang(self) -> None:
         """Build and install Clang, LLD and LLVM binutils-like tools."""
@@ -190,36 +192,36 @@ class ToolchainBuild:
             # 'lldb'
         ]
 
-        dist_comps = [
-            'clang-format',
-            'clang-resource-headers',
-            'clang',
-            'dsymutil',
-            'lld',
-            'llvm-ar',
-            'llvm-config',
-            'llvm-cov',
-            'llvm-cxxfilt',
-            'llvm-dwarfdump',
-            'llvm-link',
-            'llvm-nm',
-            'llvm-objdump',
-            'llvm-profdata',
-            'llvm-ranlib',
-            'llvm-readelf',
-            'llvm-readobj',
-            'llvm-size',
-            'llvm-strip',
-            'llvm-symbolizer',
-            'LTO',
-            'opt',
-        ]
+        # dist_comps = [
+        #     'clang-format',
+        #     'clang-resource-headers',
+        #     'clang',
+        #     'dsymutil',
+        #     'lld',
+        #     'llvm-ar',
+        #     'llvm-config',
+        #     'llvm-cov',
+        #     'llvm-cxxfilt',
+        #     'llvm-dwarfdump',
+        #     'llvm-link',
+        #     'llvm-nm',
+        #     'llvm-objdump',
+        #     'llvm-profdata',
+        #     'llvm-ranlib',
+        #     'llvm-readelf',
+        #     'llvm-readobj',
+        #     'llvm-size',
+        #     'llvm-strip',
+        #     'llvm-symbolizer',
+        #     'LTO',
+        #     'opt',
+        # ]
 
         cmake_defs = self._get_common_cmake_defs_for_llvm()
         cmake_defs.update({
             'CMAKE_INSTALL_PREFIX:STRING': cfg.target_llvm_dir,
             'LLVM_ENABLE_PROJECTS:STRING': ';'.join(projects),
-            'LLVM_DISTRIBUTION_COMPONENTS:STRING': ';'.join(dist_comps),
+            # 'LLVM_DISTRIBUTION_COMPONENTS:STRING': ';'.join(dist_comps),
             'BUG_REPORT_URL': 'https://github.com/ARM-software/'
                               'LLVM-embedded-toolchain-for-Arm/issues',
         })
@@ -246,10 +248,12 @@ class ToolchainBuild:
 
         self._cmake_configure('LLVM', join(cfg.llvm_repo_dir, 'llvm'),
                               llvm_build_dir, cmake_defs, cmake_env)
-        logging.info('Building and installing LLVM components: %s',
-                     ', '.join(dist_comps))
+        # logging.info('Building and installing LLVM components: %s',
+        #              ', '.join(dist_comps))
+        # self._cmake_build(llvm_build_dir,
+        #                   target='install-distribution-stripped')
         self._cmake_build(llvm_build_dir,
-                          target='install-distribution-stripped')
+                          target='install')
         # When compiling for Windows copy required DLLs
         if cfg.host_toolchain.kind == config.ToolchainKind.MINGW:
             if cfg.copy_runtime_dlls:
