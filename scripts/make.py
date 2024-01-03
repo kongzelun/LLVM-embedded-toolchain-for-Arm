@@ -159,7 +159,7 @@ class ToolchainBuild:
         cmake_defs.update({
             'CMAKE_INSTALL_PREFIX:STRING': cfg.native_llvm_dir,
             'LLVM_ENABLE_PROJECTS:STRING': ';'.join(projects),
-            'LLVM_DISTRIBUTION_COMPONENTS:STRING': ';'.join(dist_comps),
+            # 'LLVM_DISTRIBUTION_COMPONENTS:STRING': ';'.join(dist_comps),
             'LLVM_INCLUDE_TESTS:BOOL': 'OFF',
             'LLVM_INCLUDE_EXAMPLES:BOOL': 'OFF',
             'LLVM_INCLUDE_BENCHMARKS:BOOL': 'OFF',
@@ -222,6 +222,7 @@ class ToolchainBuild:
             'CMAKE_INSTALL_PREFIX:STRING': cfg.target_llvm_dir,
             'LLVM_ENABLE_PROJECTS:STRING': ';'.join(projects),
             # 'LLVM_DISTRIBUTION_COMPONENTS:STRING': ';'.join(dist_comps),
+            "LLVM_BUILD_LLVM_DYLIB:BOOL": "ON",
             'BUG_REPORT_URL': 'https://github.com/ARM-software/'
                               'LLVM-embedded-toolchain-for-Arm/issues',
         })
@@ -252,6 +253,8 @@ class ToolchainBuild:
         #              ', '.join(dist_comps))
         # self._cmake_build(llvm_build_dir,
         #                   target='install-distribution-stripped')
+        logging.info('Building and installing LLVM projects: %s',
+                     ', '.join(projects))
         self._cmake_build(llvm_build_dir,
                           target='install')
         # When compiling for Windows copy required DLLs
