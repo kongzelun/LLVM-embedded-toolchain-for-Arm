@@ -19,7 +19,7 @@
 set -e
 
 # If your python3 is not just "python3" edit this
-PYTHON3=python3
+PYTHON3=python3.12
 
 python_err="Error: Python 3.6 or newer is required."
 if command -v "$PYTHON3" --version &> /dev/null
