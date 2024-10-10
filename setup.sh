@@ -20,6 +20,7 @@ set -e
 
 # If your python3 is not just "python3" edit this
 PYTHON3=python3.12
+PIP3=pip3.12
 
 python_err="Error: Python 3.6 or newer is required."
 if command -v "$PYTHON3" --version &> /dev/null
@@ -39,6 +40,9 @@ fi
 
 cd "$(dirname "$0")"
 
-pip install -U --no-index --find-links ~/wheels pip wheel setuptools
-pip install -U --no-index --find-links ~/wheels -r requirements.txt
-pip install -e scripts
+"$PIP3" wheel --wheel-dir ~/wheels --no-binary :all: pip wheel setuptools
+"$PIP3" wheel --wheel-dir ~/wheels --no-binary :all: -r requirements.txt
+
+"$PIP3" install -U --no-index --find-links ~/wheels pip wheel setuptools
+"$PIP3" install -U --no-index --find-links ~/wheels -r requirements.txt
+"$PIP3" install -e scripts
