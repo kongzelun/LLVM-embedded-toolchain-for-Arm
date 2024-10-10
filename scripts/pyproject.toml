@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LLVMEmbeddedToolchainForArm"
+version = "14.0.6"
+description = "A toolchain for Arm based on LLVM"
+dependencies = [
+    "pyyaml",
+    "gitpython"
+]
+requires-python = ">=3.6"
+
+[project.scripts]
+build = "build:main"
+repos = "repos:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
